@@ -1,0 +1,16 @@
+/* src/App.css */
+.carousel-item img {
+    height: 60vh;
+    object-fit: cover;
+  }
+  
+  .carousel-caption h3 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+  
+  .carousel-caption p {
+    font-size: 1.25rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  }
+  

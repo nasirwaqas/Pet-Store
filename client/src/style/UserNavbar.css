@@ -1,0 +1,154 @@
+/* Logo Style */
+#logo {
+    color: white; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border initially to avoid shift */
+}
+
+#logo:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Location Style */
+#dileveroption {
+    color: white; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border initially */
+    width: fit-content;
+}
+
+#dileveroption:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Py-2 Class (Padding Utility) */
+.py-2 {
+    color: white; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border */
+}
+
+.py-2:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Bold Text Style */
+.fw-bold {
+    color: white; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border */
+}
+.ctd-button {
+    background-color: #ffc107 !important;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0%;
+
+}
+
+.fw-bold:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Me-3 Class (Margin Utility) */
+.me-3 {
+    color: white !important; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border */
+}
+
+.me-3:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Dropdown - Departments */
+#departments-dropdown {
+    
+    border: 0.5px solid transparent; /* Transparent border */
+    color: white; /* Set text color to white */
+}
+
+#departments-dropdown .me-3:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Navbar General Style */
+.navbar {
+    color: white !important; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border */
+}
+
+.navbar:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+#language-dropdown {
+    color: white;
+}
+
+/* Language Dropdown */
+#language-dropdown .me-3 {
+    color: white !important; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border */
+}
+
+#language-dropdown .me-3:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Account Dropdown */
+#account-dropdown {
+    color: white; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border */
+}
+
+#account-dropdown .me-3:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Orders (Return and Orders Section) */
+#returnOrders {
+    color: white; /* Set text color to white */
+    border: 0.5px solid transparent; /* Transparent border */
+}
+
+#returnOrders:hover {
+    border: 0.5px solid white; /* White border on hover */
+}
+
+/* Cart Icon (Shopping Cart and Badge) */
+.fa-shopping-cart {
+    color: white; /* Set icon color to white */
+}
+
+.badge {
+    background-color: red; /* Badge color stays red */
+    color: white; /* Badge text color */
+}
+/* Show dropdown menu on hover */
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* Prevents the position shift */
+}
+
+#departments-dropdown:hover .dropdown-menu,
+#language-dropdown:hover .dropdown-menu,
+#account-dropdown:hover .dropdown-menu {
+    display: block; /* Display the dropdown menu on hover */
+    margin-top: 0;  /* Prevent movement */
+}
+
+
+
+/* search bar stylings  */
+
+/* Style the search bar to make it look like a unified search box */
+  #departments-dropdown{
+    border-color: rgb(239, 231, 231);
+    color: black;
+  }
+  
+  .search-bar  {
+    min-width: 65rem;
+    background-color: rgb(225, 223, 220);
+  }
+
+
+  /* cart style */
+
+
+  

@@ -1,0 +1,215 @@
+.pet-card {
+  border: 1px solid #f0f0f0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 300px;
+}
+
+.pet-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.pet-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.pet-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.pet-rating {
+  font-size: 0.9rem;
+  color: #ffa41c;
+}
+
+.pet-price {
+  font-size: 1.2rem;
+  font-weight: thin;
+  color: #fa7455;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  line-height: 1.4;
+  max-height: 2.8em; /* For 2-line truncation */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description.show {
+  white-space: normal;
+  max-height: none;
+}
+.pet-card {
+  border: 1px solid #f0f0f0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pet-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.pet-image {
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.pet-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  height: 45px; /* Adjust based on title length */
+  overflow: hidden;
+}
+
+
+.pet-discount {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+.sold-count {
+  font-size: 0.9rem;
+  color: #252424;
+}
+
+.pet-rating {
+  font-size: 0.9rem;
+  color: #ffa41c;
+  margin-right: 2%;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  line-height: 1.4;
+  max-height: 2.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description.show {
+  white-space: normal;
+  max-height: none;
+}
+
+
+.pet-card {
+  border: 1px solid #f0f0f0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pet-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.pet-image {
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.pet-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  height: 45px;
+  overflow: hidden;
+}
+
+
+.pet-discount {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+
+.pet-rating {
+  font-size: 0.9rem;
+  color: #ffa41c;
+  display: flex;
+  align-items: center;
+}
+
+.stars {
+margin-inline: 5px;
+  color: #ffa41c;
+  font-size: 1rem;
+}
+.stars span {
+  margin-right: 5px;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  line-height: 1.4;
+  max-height: 2.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description.show {
+  white-space: normal;
+  max-height: none;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Show two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* Ensure that the text wraps properly */
+}
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-title {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+.cardtitle{
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: #333;
+  margin-bottom: 10px;
+  height: 45px;
+  overflow: hidden;
+}
+.review-section{
+  display: inline-flex;
+  margin-top: 1rem;
+}

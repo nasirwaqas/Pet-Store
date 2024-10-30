@@ -1,0 +1,33 @@
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer a {
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
+  footer ul {
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+  }
+  
+  footer .list-unstyled {
+    display: flex;
+    flex-direction: column;
+  }
+  .fb-icon{
+    color: rgb(56, 56, 241);
+  }
+  .twittor-icon{
+    color: rgb(113, 113, 249);
+  }
+  .inst-icon{
+    color: rgb(255, 0, 0);
+  }
