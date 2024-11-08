@@ -155,7 +155,7 @@ const SearchedPets = () => {
                   <Accordion.Header>Price</Accordion.Header>
                   <Accordion.Body>
                     <Form.Group controlId="priceRange">
-                      <Form.Label>Price Range: {priceRange[0]} - {priceRange[1]}</Form.Label>
+                      <Form.Label>Price Range: {priceRange[0]} - {priceRange[200]}</Form.Label>
                       <Form.Range
                         value={priceRange}
                         min={0}

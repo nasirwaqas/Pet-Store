@@ -89,7 +89,7 @@ const port = process.env.PORT || 8080;
 
 // Listen port
 app.listen(port, () => {
-  console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${port}`.yellow.bold);
+  console.log(`Server is running in ${process.env.NODE_MODE} mode on port ${port}`.yellow.bold);
 });
 
 // Serve frontend
