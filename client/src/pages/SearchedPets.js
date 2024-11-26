@@ -1,45 +1,31 @@
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Col, Row, Card, Alert, Container, Form, Button, Accordion } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Range } from 'react-range';
 import '../style/PetCard.css';
 import UserNavbar from './UserNavbar';
 import Footer from './Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const SearchedPets = () => {
   const [pets, setPets] = useState([]);
   const [filteredPets, setFilteredPets] = useState([]);
-  const [selectedBreed, setSelectedBreed] = useState('');
+  const [breedInput, setBreedInput] = useState('');
   const [color, setColor] = useState('');
   const [priceRange, setPriceRange] = useState([0, 10000]);
   const [selectedRating, setSelectedRating] = useState(null);
   const location = useLocation();
 
-  // Example breed options for radio buttons
-  const breedOptions = ['Labrador', 'Persian', 'Parrot'];
-
-  // Example color options for specific breeds
-  const colorOptions = {
-    Labrador: ['Black', 'Yellow', 'Chocolate'],
-    Persian: ['White', 'Grey', 'Black'],
-    Parrot: ['Green', 'Red', 'Blue'],
-  };
-
-  // Extract search query from the URL
   const queryParams = new URLSearchParams(location.search);
-  const category = queryParams.get('category') || ''; // Get the pet type from the URL
+  const category = queryParams.get('category') || '';
 
-  // Fetch pet data from the backend
   useEffect(() => {
     const fetchData = async () => {
       try {
         const petRes = await axios.get('http://localhost:8080/pet/searchPets', { params: { category } });
-        const petsData = Array.isArray(petRes.data) ? petRes.data : [];
-        setPets(petsData);
+        setPets(Array.isArray(petRes.data) ? petRes.data : []);
       } catch (error) {
         console.error('Error fetching data:', error);
         setPets([]);
@@ -48,7 +34,6 @@ const SearchedPets = () => {
     fetchData();
   }, [category]);
 
-  // Filter pets based on user input
   useEffect(() => {
     let filtered = pets;
 
@@ -56,8 +41,8 @@ const SearchedPets = () => {
       filtered = filtered.filter(pet => pet.status !== 'Blocked' && pet.category.toLowerCase() === category.toLowerCase());
     }
 
-    if (selectedBreed) {
-      filtered = filtered.filter(pet => pet.breed === selectedBreed);
+    if (breedInput) {
+      filtered = filtered.filter(pet => pet.breed.toLowerCase().includes(breedInput.toLowerCase()));
     }
 
     if (color) {
@@ -73,27 +58,20 @@ const SearchedPets = () => {
     }
 
     setFilteredPets(filtered);
-  }, [category, pets, selectedBreed, color, priceRange, selectedRating]);
+  }, [category, pets, breedInput, color, priceRange, selectedRating]);
 
-  // Calculate average rating for pets
   const calculateAverageRating = (reviews) => {
     if (reviews.length === 0) return 0;
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return (totalRating / reviews.length).toFixed(1);
   };
 
-  // Update price range
-  const handlePriceChange = (e) => {
-    setPriceRange([e.target.value[0], e.target.value[1]]);
+  const handleRangeChange = (values) => {
+    setPriceRange(values);
   };
 
-  // Update rating selection
   const handleRatingChange = (rating) => {
     setSelectedRating(rating);
-  };
-
-  const handleFilterSubmit = (e) => {
-    e.preventDefault();
   };
 
   return (
@@ -101,100 +79,93 @@ const SearchedPets = () => {
       <UserNavbar />
       <Container fluid className="mt-4">
         <Row>
-          {/* Left Sidebar Filter */}
+          {/* Sidebar Filters */}
           <Col xs={12} md={3} className="mb-4">
             <h5>Filter by</h5>
-            <Form onSubmit={handleFilterSubmit}>
+            <Form>
               <Accordion defaultActiveKey="0">
-                {/* Breed Filter */}
+                {/* Breed Input Field */}
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Breed</Accordion.Header>
                   <Accordion.Body>
-                    {breedOptions.map((breed, index) => (
-                      <Form.Check
-                        key={index}
-                        type="radio"
-                        label={breed}
-                        name="breed"
-                        value={breed}
-                        checked={selectedBreed === breed}
-                        onChange={(e) => {
-                          setSelectedBreed(e.target.value);
-                          setColor(''); // Reset color when breed changes
-                        }}
+                    <Form.Group controlId="breedInput">
+                      <Form.Label>Enter Breed</Form.Label>
+                      <Form.Control
+                        type="text"
+                        value={breedInput}
+                        placeholder="Type breed..."
+                        onChange={(e) => setBreedInput(e.target.value)}
                       />
-                    ))}
+                    </Form.Group>
                   </Accordion.Body>
                 </Accordion.Item>
 
-                {/* Color Filter (conditionally shown based on breed) */}
-                {selectedBreed && (
-                  <Accordion.Item eventKey="1">
-                    <Accordion.Header>Color</Accordion.Header>
-                    <Accordion.Body>
-                      <Form.Group controlId="color">
-                        <Form.Control
-                          as="select"
-                          value={color}
-                          onChange={(e) => setColor(e.target.value)}
-                        >
-                          <option value="">Select Color</option>
-                          {colorOptions[selectedBreed]?.map((color, index) => (
-                            <option key={index} value={color}>
-                              {color}
-                            </option>
-                          ))}
-                        </Form.Control>
-                      </Form.Group>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                )}
-
-                {/* Price Filter */}
-                <Accordion.Item eventKey="2">
+                {/* Price Range Filter with Two Handles */}
+                <Accordion.Item eventKey="1">
                   <Accordion.Header>Price</Accordion.Header>
                   <Accordion.Body>
                     <Form.Group controlId="priceRange">
-                      <Form.Label>Price Range: {priceRange[0]} - {priceRange[200]}</Form.Label>
-                      <Form.Range
-                        value={priceRange}
+                      <Form.Label>
+                        Price Range: {priceRange[0]} - {priceRange[1]}
+                      </Form.Label>
+                      <Range
+                        step={50}
                         min={0}
                         max={10000}
-                        onChange={handlePriceChange}
+                        values={priceRange}
+                        onChange={handleRangeChange}
+                        renderTrack={({ props, children }) => (
+                          <div
+                            {...props}
+                            style={{
+                              height: '6px',
+                              width: '100%',
+                              background: '#ddd',
+                              margin: '20px 0'
+                            }}
+                          >
+                            {children}
+                          </div>
+                        )}
+                        renderThumb={({ props }) => (
+                          <div
+                            {...props}
+                            style={{
+                              height: '16px',
+                              width: '16px',
+                              backgroundColor: '#007bff',
+                              borderRadius: '50%'
+                            }}
+                          />
+                        )}
                       />
                     </Form.Group>
                   </Accordion.Body>
                 </Accordion.Item>
 
                 {/* Rating Filter */}
-                <Accordion.Item eventKey="3">
+                <Accordion.Item eventKey="2">
                   <Accordion.Header>Rating</Accordion.Header>
                   <Accordion.Body>
                     <div className="rating-filter">
                       {[1, 2, 3, 4, 5].map((star) => (
-                     <FontAwesomeIcon
-                     key={star}
-                     icon={faStar}
-                     className="star"
-                     size="lg" // Use FontAwesomeIcon's size options like "xs", "sm", "lg" instead of numbers
-                     color={star <= selectedRating ? 'gold' : 'grey'}
-                     onClick={() => handleRatingChange(star)}
-                   />
-                   
+                        <FontAwesomeIcon
+                          key={star}
+                          icon={faStar}
+                          className="star"
+                          color={star <= selectedRating ? 'gold' : 'grey'}
+                          onClick={() => handleRatingChange(star)}
+                        />
                       ))}
                     </div>
                   </Accordion.Body>
                 </Accordion.Item>
-
-                <Button className="mt-3" variant="primary" type="submit">
-                  Apply Filters
-                </Button>
               </Accordion>
             </Form>
           </Col>
 
-          {/* Right Side Pet Display */}
-          <Col xs={12} md={9}>
+             {/* Right Side Pet Display */}
+             <Col xs={12} md={9}>
             <Row>
               {filteredPets.length > 0 ? (
                 filteredPets.map((pet) => (
