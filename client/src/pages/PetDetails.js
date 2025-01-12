@@ -109,14 +109,14 @@ const PetDetails = () => {
           </Col>
 
           {/* Middle Section: Product Details */}
-          <Col xs={9} md={5} className="detailsbox">
+          <Col xs={8} md={4} className="detailsbox">
             <div className="card-title">
               <Card.Title className="pet-title">
                 <Card.Text className="text-left cardtitle">
                   {pet.description}
                 </Card.Text>
               </Card.Title>
-              <Col md={6} className="flex-item-right">
+              <Col md={9} className="flex-item-right">
                 {/* Ratings & Reviews */}
                 <div className="rating-section">
                   <div className="review-section">

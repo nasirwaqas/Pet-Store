@@ -71,6 +71,7 @@
 .navbar {
     color: white !important; /* Set text color to white */
     border: 0.5px solid transparent; /* Transparent border */
+
 }
 
 .navbar:hover {
@@ -143,7 +144,7 @@
   }
   
   .search-bar  {
-    min-width: 65rem;
+    min-width: 55rem;
     background-color: rgb(225, 223, 220);
   }
 
@@ -151,4 +152,16 @@
   /* cart style */
 
 
+  .custom-toggle {
+    color: white;
+    border-color: white;
+    background-color: white !important;
+  }
   
+  .custom-toggle:hover {
+    background-color: rgb(101, 224, 122);
+    color: black; /* Optional hover effect */
+  }
+ Navbar{
+    width: 100%;
+}

@@ -22,11 +22,11 @@ export const SidebarMenu = [
     path: "/admin/bookings",
     icon: faCartPlus,
   },
-  {
-    name: "Complaints",
-    path: "/admin/complaints",
-    icon: faEnvelope,
-  },
+  // {
+  //   name: "Complaints",
+  //   path: "/admin/complaints",
+  //   icon: faEnvelope,
+  // },
   {
     name: "Logout",
     path: "/",

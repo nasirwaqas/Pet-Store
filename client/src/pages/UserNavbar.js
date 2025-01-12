@@ -105,16 +105,16 @@ const UserNavbar = () => {
   
 
   return (
-    <div className='userNavbar'>
-      <Navbar bg="dark" expand="lg" className="shadow-sm py-2">
+    <div className='userNavbar' >
+      <Navbar bg="dark" expand="lg" className="shadow-sm py-1" style={{ width: '100%', margin: '0 auto' }}>
         <Container fluid>
           <Navbar.Brand as={Link} to="/" id='logo' className="fw-bold">
             Pet Store
           </Navbar.Brand>
 
-          <Navbar.Toggle aria-controls="navbarResponsive" />
+          <Navbar.Toggle aria-controls="navbarResponsive" className="custom-toggle" />
           
-          <Navbar.Collapse id="navbarResponsive">
+          <Navbar.Collapse id="navbarResponsive" bg="light">
             <Nav className="me-auto">
               <div className="d-none d-lg-block me-3" id='dileveroption'>
                 <span className="location">Deliver to</span><br />
@@ -124,7 +124,7 @@ const UserNavbar = () => {
 
             {/* Search Bar */}
             <Nav className="me-auto">
-              <InputGroup className="search-bar mx-auto my-2 my-lg-0">
+              <InputGroup className="search-bar mx-auto my-2 my-lg-0" size="sm"> 
                 <NavDropdown 
                   title={selectedCategory} 
                   id="departments-dropdown" 
@@ -167,7 +167,7 @@ const UserNavbar = () => {
               </InputGroup>
             </Nav>
 
-            <Nav className="ms-auto">
+            <Nav className="ms-a">
               <NavDropdown title="EN" id="language-dropdown" className="me-3">
                 <NavDropdown.Item href="#">English</NavDropdown.Item>
                 <NavDropdown.Item href="#">Urdu</NavDropdown.Item>

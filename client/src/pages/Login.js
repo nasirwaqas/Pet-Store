@@ -144,7 +144,7 @@ const onFinishHandler = async (values) => {
         <Checkbox>Remember me</Checkbox>
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">Submit</Button>
+        <Button type="brown" htmlType="submit">Submit</Button>
       </Form.Item>
     </Form>
   );
