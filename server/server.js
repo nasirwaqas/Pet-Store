@@ -84,25 +84,26 @@ app.get('/', (req, res) => {
   });
 });
 
-// REMOVE app.listen for Vercel/serverless deployment
-// const port = process.env.PORT || 8080;
-// app.listen(port, () => {
-//   console.log(`Server is running in ${process.env.NODE_MODE} mode on port ${port}`.yellow.bold);
-// });
+// Port
+const port = process.env.PORT || 8080;
 
-// REMOVE this block for Vercel/serverless deployment
+// Listen port
+app.listen(port, () => {
+  console.log(`Server is running in ${process.env.NODE_MODE} mode on port ${port}`.yellow.bold);
+});
+
 // Serve frontend
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../client/build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/build")));
 
-//   app.get("*", (req, res) =>
-//     res.sendFile(
-//       path.resolve(__dirname, "../", "client", "build", "index.html")
-//     )
-//   );
-// } else {
-//   app.get("/", (req, res) => res.send("Please set to production"));
-// }
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "client", "build", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Please set to production"));
+}
 
 
 module.exports = app;
