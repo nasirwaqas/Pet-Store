@@ -90,18 +90,19 @@ app.get('/', (req, res) => {
 //   console.log(`Server is running in ${process.env.NODE_MODE} mode on port ${port}`.yellow.bold);
 // });
 
+// REMOVE this block for Vercel/serverless deployment
 // Serve frontend
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../client/build")));
 
-  app.get("*", (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, "../", "client", "build", "index.html")
-    )
-  );
-} else {
-  app.get("/", (req, res) => res.send("Please set to production"));
-}
+//   app.get("*", (req, res) =>
+//     res.sendFile(
+//       path.resolve(__dirname, "../", "client", "build", "index.html")
+//     )
+//   );
+// } else {
+//   app.get("/", (req, res) => res.send("Please set to production"));
+// }
 
 
 module.exports = app;
