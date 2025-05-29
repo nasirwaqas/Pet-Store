@@ -146,7 +146,7 @@ const UserNavbar = () => {
                   <NavDropdown.Item eventKey="pigeon">Pigeon</NavDropdown.Item>
                   <NavDropdown.Item eventKey="canary">Canary</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item eventKey="More Categories">More Categories</NavDropdown.Item>
+                  <NavDropdown.Item eventKey="More Categories"> <strong>More Categories</strong>  </NavDropdown.Item>
                 </NavDropdown>
 
                 <FormControl
