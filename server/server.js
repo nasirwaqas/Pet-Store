@@ -104,3 +104,4 @@ if (process.env.NODE_ENV === "production") {
 } else {
   app.get("/", (req, res) => res.send("Please set to production"));
 }
+module.exports = app;
