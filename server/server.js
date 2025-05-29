@@ -28,7 +28,7 @@ app.use('/images', express.static(path.join(__dirname, 'public/images')));
 // Routes
 // app.use("/user", require("./routes/userRoute"));
 app.use("/pet", require("./routes/petRoute"));
-app.use("/admin", require("./routes/adminroute"));
+// app.use("/admin", require("./routes/adminroute"));
 
 // Health check route
 app.get('/', (req, res) => {
