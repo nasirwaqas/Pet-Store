@@ -14,8 +14,9 @@ exports.uploadPet = async (req, res) => {
       return res.status(400).json({ message: 'No files uploaded', error: 'No files provided in the request' });
     }
 
-    const { category, breed, price, description, accountNumber,about, details, discount, color } = req.body;
-    const images = req.files.map(file => file.path); // Map over files to get paths
+    const { category, breed, price, description, accountNumber, about, details, discount, color } = req.body;
+    // Save only the relative path for each image
+    const images = req.files.map(file => 'images/' + file.filename);
 
     // Create a new pet document
     const newPet = new Pet({
