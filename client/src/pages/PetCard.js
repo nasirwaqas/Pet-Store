@@ -11,7 +11,7 @@ const PetCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const petRes = await axios.get('https://pet-store-zeta-rust.vercel.app/admin/pets');
+        const petRes = await axios.get('http://localhost:8080/admin/pets');
         const petsData = Array.isArray(petRes.data) ? petRes.data : petRes.data.pets || [];
         setPets(petsData);
       } catch (error) {
