@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 });
 
 // Port
-// const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
 // Listen port
 app.listen(port, () => {
