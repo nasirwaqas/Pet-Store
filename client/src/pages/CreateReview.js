@@ -22,7 +22,7 @@ const CreateReview = () => {
   useEffect(() => {
     const fetchPetDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/pet/${id}`);
+        const res = await axios.get(`https://pet-store-zeta-rust.vercel.app/pet/${id}`);
         setPet(res.data);
       } catch (error) {
         console.error('Error fetching pet details:', error);
@@ -59,7 +59,7 @@ const CreateReview = () => {
     try {
       // POST review to backend
       await axios.post(
-        `http://localhost:8080/pet/${id}/review`, 
+        `https://pet-store-zeta-rust.vercel.app/pet/${id}/review`, 
         {
           review, // Review text
           rating, // Rating value

@@ -16,7 +16,7 @@ const ManageProducts = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const petRes = await axios.get('http://localhost:8080/admin/pets')
+        const petRes = await axios.get('https://pet-store-zeta-rust.vercel.app/admin/pets')
         const petsData = Array.isArray(petRes.data) ? petRes.data : petRes.data.pets || [];
 
         setPets(petsData);
@@ -32,7 +32,7 @@ const ManageProducts = ({ children }) => {
   // Handle pet status change
   const handlePetStatus = async (petId, status) => {
     try {
-      await axios.put(`http://localhost:8080/admin/pet-status`, { petId, status });
+      await axios.put(`https://pet-store-zeta-rust.vercel.app/admin/pet-status`, { petId, status });
       setPets(pets.map(pet => pet._id === petId ? { ...pet, status } : pet));
     } catch (error) {
       console.error('Error updating pet status:', error);
@@ -42,7 +42,7 @@ const ManageProducts = ({ children }) => {
   // Handle pet update
   const handleUpdatePet = async () => {
     try {
-      await axios.put(`http://localhost:8080/admin/pets/${selectedPet._id}`, selectedPet);
+      await axios.put(`https://pet-store-zeta-rust.vercel.app/admin/pets/${selectedPet._id}`, selectedPet);
       setShowUpdatePetModal(false);
       setPets(pets.map(pet => pet._id === selectedPet._id ? selectedPet : pet));
     } catch (error) {

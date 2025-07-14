@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const updateUser = async (token, userId, values) => {
   try {
-    const res = await axios.put(`http://localhost:8080/user/updateUser/${userId}`, values, {
+    const res = await axios.put(`https://pet-store-zeta-rust.vercel.app/user/updateUser/${userId}`, values, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -7,7 +7,7 @@ const DeletePet = ({ petId, onDeleteSuccess }) => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.delete(`http://localhost:8080/pet/deletePet/${petId}`, {
+      const res = await axios.delete(`https://pet-store-zeta-rust.vercel.app/pet/deletePet/${petId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

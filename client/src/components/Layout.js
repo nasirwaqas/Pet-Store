@@ -20,7 +20,7 @@ const AdminLayout = ({ children }) => {
 
   const getUserData = async () => {
     try {
-      const res = await axios.post('http://localhost:8080/user/getUserData', {},
+      const res = await axios.post('https://pet-store-zeta-rust.vercel.app/user/getUserData', {},
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,

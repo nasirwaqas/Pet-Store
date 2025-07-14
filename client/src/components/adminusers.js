@@ -16,7 +16,7 @@ const AdminManagement = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userRes = await axios.get('http://localhost:8080/admin/users');
+        const userRes = await axios.get('https://pet-store-zeta-rust.vercel.app/admin/users');
         const usersData = Array.isArray(userRes.data) ? userRes.data : userRes.data.users || [];
         setUsers(usersData);
       } catch (error) {
@@ -35,7 +35,7 @@ const AdminManagement = ({ children }) => {
         return;
       }
 
-      const response = await axios.put('http://localhost:8080/admin/user-status', { userId, status });
+      const response = await axios.put('https://pet-store-zeta-rust.vercel.app/admin/user-status', { userId, status });
 
       if (response.data.success) {
         setUsers(users.map(user => user._id === userId ? { ...user, status } : user));
@@ -50,7 +50,7 @@ const AdminManagement = ({ children }) => {
   // Handle user update
   const handleUpdateUser = async () => {
     try {
-      await axios.put(`http://localhost:8080/admin/users/${selectedUser._id}`, selectedUser);
+      await axios.put(`https://pet-store-zeta-rust.vercel.app/admin/users/${selectedUser._id}`, selectedUser);
       setShowUpdateModal(false);
       setUsers(users.map(user => user._id === selectedUser._id ? selectedUser : user));
     } catch (error) {
@@ -61,7 +61,7 @@ const AdminManagement = ({ children }) => {
   // Handle user delete
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:8080/admin/users/${userId}`);
+      await axios.delete(`https://pet-store-zeta-rust.vercel.app/admin/users/${userId}`);
       setUsers(users.filter(user => user._id !== userId));
     } catch (error) {
       console.error('Error deleting user:', error);
