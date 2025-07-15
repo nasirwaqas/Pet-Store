@@ -24,7 +24,7 @@ const SearchedPets = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const petRes = await axios.get('http://localhost:8080/pet/searchPets', { params: { category } });
+        const petRes = await axios.get('https://pet-store-zeta-rust.vercel.app/pet/searchPets', { params: { category } });
         setPets(Array.isArray(petRes.data) ? petRes.data : []);
       } catch (error) {
         console.error('Error fetching data:', error);

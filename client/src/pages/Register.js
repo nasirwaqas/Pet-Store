@@ -12,7 +12,7 @@ const Register = () => {
   const onFinishHandler = async (values) => {
     try {
       dispatch(showLoading());
-      const res = await axios.post("http://localhost:8080/user/register", {
+      const res = await axios.post("https://pet-store-zeta-rust.vercel.app/user/register", {
         ...values,
         role: values.role || 'User',  // Ensure role is 'user'
       });

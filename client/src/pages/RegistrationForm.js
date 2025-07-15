@@ -11,7 +11,7 @@ const RegisterForm = () => {
 
   const fetchUserData = async () => {
     try {
-      const res = await axios.post('http://localhost:8080/user/getUserData', {}, {
+      const res = await axios.post('https://pet-store-zeta-rust.vercel.app/user/getUserData', {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -38,7 +38,7 @@ const RegisterForm = () => {
 
   const handleUpdate = async (values) => {
     try {
-      const res = await axios.put('http://localhost:8080/user/updateUserData', values, {
+      const res = await axios.put('https://pet-store-zeta-rust.vercel.app/user/updateUserData', values, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

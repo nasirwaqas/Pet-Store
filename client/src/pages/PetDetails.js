@@ -19,7 +19,7 @@ const PetDetails = () => {
   useEffect(() => {
     const fetchPetDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/pet/${id}`);
+        const res = await axios.get(`https://pet-store-zeta-rust.vercel.app/pet/${id}`);
         setPet(res.data);
         setMainImage(`/images/${res.data.images[0].split('\\').pop()}`); // Set the default main image to the first image
         calculateAverageRating(res.data.reviews);

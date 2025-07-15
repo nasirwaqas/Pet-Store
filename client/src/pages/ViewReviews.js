@@ -18,7 +18,7 @@ const ViewReviews = () => {
   useEffect(() => {
     const fetchRating = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:8080/pet/${id}/rating`);
+        const { data } = await axios.get(`https://pet-store-zeta-rust.vercel.app/pet/${id}/rating`);
         setRatingData(data);
       } catch (error) {
         console.error('Error fetching rating data:', error);

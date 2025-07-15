@@ -23,7 +23,7 @@ const Profile = () => {
 
   const getUserData = async () => {
     try {
-      const res = await axios.post('http://localhost:8080/user/getUserData', {}, {
+      const res = await axios.post('https://pet-store-zeta-rust.vercel.app/user/getUserData', {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -48,7 +48,7 @@ const Profile = () => {
 
   const getUserPets = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/pet/getPetsByUser', {
+      const res = await axios.get('https://pet-store-zeta-rust.vercel.app/pet/getPetsByUser', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -95,7 +95,7 @@ const Profile = () => {
   const handleUpdate = async (values) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put("http://localhost:8080/user/updateUser", values, {
+      const res = await axios.put("https://pet-store-zeta-rust.vercel.app/user/updateUser", values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -122,7 +122,7 @@ const Profile = () => {
   const handlePetUpdate = async (values) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put(`http://localhost:8080/pet/updatePet/${selectedPet._id}`, values, {
+      const res = await axios.put(`https://pet-store-zeta-rust.vercel.app/pet/updatePet/${selectedPet._id}`, values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

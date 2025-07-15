@@ -32,7 +32,7 @@ function UploadPetForm() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:8080/pet/uploadPet', formData, {
+      const response = await axios.post('https://pet-store-zeta-rust.vercel.app/pet/uploadPet', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`, // Add token to the Authorization header
