@@ -151,17 +151,13 @@
     .search-bar {
         min-width: 100%; /* Full width on smaller screens */
     }
-    #departments-dropdown {
-        
-    }
+
   }
 @media screen and (min-width: 769px) and (max-width: 1225px) {
     .search-bar {
         min-width: 30vw; /* Adjust width for medium screens */
     }
-    #departments-dropdown {
-        
-    }
+
   }
     
 

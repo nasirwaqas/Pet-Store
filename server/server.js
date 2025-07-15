@@ -1,3 +1,5 @@
+// dotenv config
+require('dotenv').config();
 const express = require('express');
 const colors = require('colors');
 
@@ -7,8 +9,8 @@ const path = require('path');
 const { connectDB } = require('./config/db');
 const cors = require('cors');
 
-// dotenv config
-dotenv.config();
+
+console.log(`JWT_SECRET: ${process.env.JWT_SECRET}`.yellow.bold);
 
 // Connect to database
 connectDB();
@@ -41,7 +43,7 @@ const port = process.env.PORT || 8080;
 
 // Listen port
 app.listen(port, () => {
-  console.log(`Server is running in ${process.env.NODE_MODE} mode on port ${port}`.yellow.bold);
+  console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${port}`.yellow.bold);
 });
 
 // Serve frontend

@@ -1,7 +1,9 @@
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const User = require("../modals/User");
 const jwt = require('jsonwebtoken');
+
   
 
 exports.register = async (req, res) => {
@@ -60,14 +62,26 @@ exports.login = async (req, res) => {
         if (user.status === 'Rejected') {
             return res.status(403).json({ success: false, message: 'You have been rejected by admin' });
           }
+        
         // Include additional user details in the token payload
         const tokenPayload = {
             id: user._id,
             email: user.email,
-            role: user.role // Include the user role in the token
+            role: user.role
         };
 
-        const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: 3600 });
+        // Get JWT_SECRET with fallback
+        const jwtSecret = process.env.JWT_SECRET || 'secret123';
+        
+        // Debug logs
+        console.log('JWT_SECRET at token creation:', jwtSecret);
+        console.log('JWT_SECRET type:', typeof jwtSecret);
+        
+        if (!jwtSecret || jwtSecret.trim() === '') {
+            throw new Error('JWT_SECRET is not defined or empty');
+        }
+        
+        const token = jwt.sign(tokenPayload, jwtSecret, { expiresIn: 3600 });
 
         // Decode token to get the payload
         const decodedToken = jwt.decode(token);
@@ -75,7 +89,7 @@ exports.login = async (req, res) => {
 
         res.status(200).send({ message: 'Login successfully', success: true, token: token, user: user });
     } catch (error) {
-        console.log(error);
+        console.log('Login error:', error);
         res.status(500).send({ message: `Error in Login server ${error.message}` });
     }
 };

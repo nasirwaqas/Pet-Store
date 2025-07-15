@@ -2,14 +2,16 @@
   border: 1px solid #f0f0f0;
   transition: transform 0.3s, box-shadow 0.3s;
   width: 100%;
-  max-width: 300px;
+  max-width: 99%;
 }
 
 .pet-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
-
+.justify-content-around a{
+  flex-grow: 1;
+}
 .pet-image {
   height: 200px;
   object-fit: cover;
@@ -53,7 +55,7 @@
   border: 1px solid #f0f0f0;
   transition: transform 0.3s, box-shadow 0.3s;
   width: 100%;
-  max-width: 300px;
+  max-width: 99%;
   padding: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -117,7 +119,7 @@
   border: 1px solid #f0f0f0;
   transition: transform 0.3s, box-shadow 0.3s;
   width: 100%;
-  max-width: 300px;
+  max-width: 99%;
   padding: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
