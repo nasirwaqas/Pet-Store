@@ -81,7 +81,8 @@ exports.login = async (req, res) => {
             throw new Error('JWT_SECRET is not defined or empty');
         }
         
-        const token = jwt.sign(tokenPayload, jwtSecret, { expiresIn: 3600 });
+        // In your login function, increase the expiration time:
+        const token = jwt.sign(tokenPayload, jwtSecret, { expiresIn: '24h' });
 
         // Decode token to get the payload
         const decodedToken = jwt.decode(token);
