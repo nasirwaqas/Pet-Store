@@ -8,10 +8,12 @@ const RegisterForm = () => {
   const [userData, setUserData] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
+    const API_URL = process.env.REACT_APP_API_URL;
+
 
   const fetchUserData = async () => {
     try {
-      const res = await axios.post('https://pet-store-zeta-rust.vercel.app/user/getUserData', {}, {
+      const res = await axios.post(`${API_URL}/user/getUserData`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -38,7 +40,7 @@ const RegisterForm = () => {
 
   const handleUpdate = async (values) => {
     try {
-      const res = await axios.put('https://pet-store-zeta-rust.vercel.app/user/updateUserData', values, {
+      const res = await axios.put(`${API_URL}/user/updateUserData`, values, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

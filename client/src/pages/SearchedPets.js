@@ -17,6 +17,7 @@ const SearchedPets = () => {
   const [priceRange, setPriceRange] = useState([0, 10000]);
   const [selectedRating, setSelectedRating] = useState(null);
   const location = useLocation();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const queryParams = new URLSearchParams(location.search);
   const category = queryParams.get('category') || '';
@@ -24,7 +25,7 @@ const SearchedPets = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const petRes = await axios.get('https://pet-store-zeta-rust.vercel.app/pet/searchPets', { params: { category } });
+        const petRes = await axios.get(`${API_URL}/pet/searchPets`, { params: { category } });
         setPets(Array.isArray(petRes.data) ? petRes.data : []);
       } catch (error) {
         console.error('Error fetching data:', error);

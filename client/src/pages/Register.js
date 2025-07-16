@@ -8,11 +8,13 @@ import { showLoading, hideLoading } from '../redux/features/alertSlice';
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const API_URL = process.env.REACT_APP_API_URL;
+
 
   const onFinishHandler = async (values) => {
     try {
       dispatch(showLoading());
-      const res = await axios.post("https://pet-store-zeta-rust.vercel.app/user/register", {
+      const res = await axios.post(`${API_URL}/user/register`, {
         ...values,
         role: values.role || 'User',  // Ensure role is 'user'
       });
@@ -83,8 +85,8 @@ const Register = () => {
           </Form.Item>
 
           {/* Hidden field to set role as 'user' by default */}
-          <Form.Item 
-          name="role" hidden>
+          <Form.Item
+            name="role" hidden>
             <Input type='hidden' />
           </Form.Item>
 

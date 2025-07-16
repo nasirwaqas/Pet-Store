@@ -1,8 +1,9 @@
 import axios from 'axios';
+  const API_URL = process.env.REACT_APP_API_URL;
 
 export const updateUser = async (token, userId, values) => {
   try {
-    const res = await axios.put(`https://pet-store-zeta-rust.vercel.app/user/updateUser/${userId}`, values, {
+    const res = await axios.put(`${API_URL}/user/updateUser/${userId}`, values, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

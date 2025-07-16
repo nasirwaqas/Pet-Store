@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pet = require('../controllers/pet.controller');
 const authMiddleware = require('../middlewares/authMiddleware');
-const jwt = require('jsonwebtoken');
+
 
 
 const multer = require('multer');

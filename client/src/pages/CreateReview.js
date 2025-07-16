@@ -17,12 +17,14 @@ const CreateReview = () => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+    const API_URL = process.env.REACT_APP_API_URL;
+
 
   // Fetch the pet details when the component is mounted
   useEffect(() => {
     const fetchPetDetails = async () => {
       try {
-        const res = await axios.get(`https://pet-store-zeta-rust.vercel.app/pet/${id}`);
+        const res = await axios.get(`${API_URL}/pet/${id}`);
         setPet(res.data);
       } catch (error) {
         console.error('Error fetching pet details:', error);
@@ -58,8 +60,7 @@ const CreateReview = () => {
   
     try {
       // POST review to backend
-      await axios.post(
-        `https://pet-store-zeta-rust.vercel.app/pet/${id}/review`, 
+      await axios.post(`${API_URL}/pet/${id}/review`, 
         {
           review, // Review text
           rating, // Rating value

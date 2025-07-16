@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -20,7 +21,7 @@ const AdminLayout = ({ children }) => {
 
   const getUserData = async () => {
     try {
-      const res = await axios.post('https://pet-store-zeta-rust.vercel.app/user/getUserData', {},
+      const res = await axios.post(`${API_URL}/user/getUserData`, {},
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,

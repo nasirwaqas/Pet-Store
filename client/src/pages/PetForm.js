@@ -11,6 +11,8 @@ function UploadPetForm() {
   const [form] = Form.useForm();
   const [images, setImages] = useState([]);
 
+    const API_URL = process.env.REACT_APP_API_URL;
+    
   const handleImageChange = ({ fileList }) => {
     setImages(fileList.map(file => file.originFileObj));
   };
@@ -32,7 +34,7 @@ function UploadPetForm() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('https://pet-store-zeta-rust.vercel.app/pet/uploadPet', formData, {
+      const response = await axios.post(`${API_URL}/pet/uploadPet`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`, // Add token to the Authorization header

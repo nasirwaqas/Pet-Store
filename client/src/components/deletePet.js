@@ -3,11 +3,15 @@ import React from 'react';
 import { message, Button } from 'antd';
 import axios from 'axios';
 
+
+
 const DeletePet = ({ petId, onDeleteSuccess }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.delete(`https://pet-store-zeta-rust.vercel.app/pet/deletePet/${petId}`, {
+      const res = await axios.delete(`${API_URL}/pet/deletePet/${petId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

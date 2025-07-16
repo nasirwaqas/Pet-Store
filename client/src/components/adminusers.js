@@ -12,11 +12,13 @@ const AdminManagement = ({ children }) => {
   const [selectedPet, setSelectedPet] = useState(null);
   const [showViewPetModal, setShowViewPetModal] = useState(false); // New state for view modal
 
+    const API_URL = process.env.REACT_APP_API_URL;
+
   // Fetch users and pets data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userRes = await axios.get('https://pet-store-zeta-rust.vercel.app/admin/users');
+        const userRes = await axios.get('`${API_URL}/admin/users');
         const usersData = Array.isArray(userRes.data) ? userRes.data : userRes.data.users || [];
         setUsers(usersData);
       } catch (error) {
@@ -35,7 +37,7 @@ const AdminManagement = ({ children }) => {
         return;
       }
 
-      const response = await axios.put('https://pet-store-zeta-rust.vercel.app/admin/user-status', { userId, status });
+      const response = await axios.put(`${API_URL}/admin/user-status`, { userId, status });
 
       if (response.data.success) {
         setUsers(users.map(user => user._id === userId ? { ...user, status } : user));
@@ -50,7 +52,7 @@ const AdminManagement = ({ children }) => {
   // Handle user update
   const handleUpdateUser = async () => {
     try {
-      await axios.put(`https://pet-store-zeta-rust.vercel.app/admin/users/${selectedUser._id}`, selectedUser);
+      await axios.put(`${API_URL}/admin/users/${selectedUser._id}`, selectedUser);
       setShowUpdateModal(false);
       setUsers(users.map(user => user._id === selectedUser._id ? selectedUser : user));
     } catch (error) {
@@ -61,7 +63,7 @@ const AdminManagement = ({ children }) => {
   // Handle user delete
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`https://pet-store-zeta-rust.vercel.app/admin/users/${userId}`);
+      await axios.delete(`${API_URL}/admin/users/${userId}`);
       setUsers(users.filter(user => user._id !== userId));
     } catch (error) {
       console.error('Error deleting user:', error);

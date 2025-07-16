@@ -15,11 +15,13 @@ const PetDetails = () => {
   const [mainImage, setMainImage] = useState(''); // State to track the main image
   const [averageRating, setAverageRating] = useState(0);
   const navigate = useNavigate();
+    const API_URL = process.env.REACT_APP_API_URL;
+
 
   useEffect(() => {
     const fetchPetDetails = async () => {
       try {
-        const res = await axios.get(`https://pet-store-zeta-rust.vercel.app/pet/${id}`);
+        const res = await axios.get(`${API_URL}/pet/${id}`);
         setPet(res.data);
         setMainImage(`/images/${res.data.images[0].split('\\').pop()}`); // Set the default main image to the first image
         calculateAverageRating(res.data.reviews);

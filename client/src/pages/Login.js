@@ -8,7 +8,7 @@
 
 //   const onFinishHandler = async (values) => {
 //     try {
-//       const res = await axios.post("https://pet-store-zeta-rust.vercel.app/user/login", values);
+//       const res = await axios.post(`${API_URL}/user/login`, values);
 //       if (res.data.success) {
 //         localStorage.setItem('token', res.data.token);
 //         localStorage.setItem('userName', res.data.user.name); // Store username
@@ -77,11 +77,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = ({ handleClose }) => {
   const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   // src/pages/Login.js
 const onFinishHandler = async (values) => {
   try {
-    const res = await axios.post("https://pet-store-zeta-rust.vercel.app/user/login", values);
+    const res = await axios.post(`${API_URL}/user/login`, values);
     if (res.data.success) {
       const userData = {
         token: res.data.token,

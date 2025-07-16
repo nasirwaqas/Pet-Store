@@ -6,12 +6,14 @@ import '../style/PetCard.css';
 
 const PetCard = () => {
   const [pets, setPets] = useState([]);
+    const API_URL = process.env.REACT_APP_API_URL;
+
 
   // Fetch pet data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const petRes = await axios.get('https://pet-store-zeta-rust.vercel.app/admin/pets');
+        const petRes = await axios.get(`${API_URL}/admin/pets`);
         const petsData = Array.isArray(petRes.data) ? petRes.data : petRes.data.pets || [];
         setPets(petsData);
       } catch (error) {

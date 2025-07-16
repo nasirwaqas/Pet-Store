@@ -16,6 +16,8 @@ const Profile = () => {
   const [form] = Form.useForm();
   const [petForm] = Form.useForm();
   const logout = useLogout(); // Use the logout hook
+    const API_URL = process.env.REACT_APP_API_URL;
+
 
   const refreshPetList = () => {
     getUserPets();
@@ -23,7 +25,7 @@ const Profile = () => {
 
   const getUserData = async () => {
     try {
-      const res = await axios.post('https://pet-store-zeta-rust.vercel.app/user/getUserData', {}, {
+      const res = await axios.post(`${API_URL}/user/getUserData`, {}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -48,7 +50,7 @@ const Profile = () => {
 
   const getUserPets = async () => {
     try {
-      const res = await axios.get('https://pet-store-zeta-rust.vercel.app/pet/getPetsByUser', {
+      const res = await axios.get(`${API_URL}/pet/getPetsByUser`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -95,7 +97,7 @@ const Profile = () => {
   const handleUpdate = async (values) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put("https://pet-store-zeta-rust.vercel.app/user/updateUser", values, {
+      const res = await axios.put(`${API_URL}/user/updateUser`, values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -122,7 +124,7 @@ const Profile = () => {
   const handlePetUpdate = async (values) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put(`https://pet-store-zeta-rust.vercel.app/pet/updatePet/${selectedPet._id}`, values, {
+      const res = await axios.put(`${API_URL}/pet/updatePet/${selectedPet._id}`, values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
