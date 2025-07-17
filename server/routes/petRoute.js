@@ -11,7 +11,7 @@ const path = require('path'); // Import the path module
 // Multer configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../../client/public/images')); // Use absolute path
+    cb(null, path.join(__dirname, '../upload/images')); // Use absolute path
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname)); // Keep the original file name

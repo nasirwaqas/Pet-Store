@@ -10,11 +10,6 @@ const Review = require("../modals/Review")
 
 exports.uploadPet = async (req, res) => {
   try {
-    
-    if (!req.files || req.files.length === 0) {
-      return res.status(400).json({ message: 'No files uploaded', error: 'No files provided in the request' });
-    }
-
     const { category, breed, price, description, accountNumber, about, details, discount, color } = req.body;
     // Save only the relative path for each image
     const images = req.files.map(file => file.filename);

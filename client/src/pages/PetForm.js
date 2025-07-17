@@ -141,7 +141,7 @@ function UploadPetForm() {
               label="Images"
               valuePropName="fileList"
               getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
-              rules={[{ required: true, message: 'Please upload images' }]}
+              
             >
               <Upload
                 listType="picture"
