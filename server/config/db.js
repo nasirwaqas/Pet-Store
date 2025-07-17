@@ -4,7 +4,7 @@ const colors = require('colors');
 const connectDB = async () => {
     try {
         // Set mongoose global options
-        mongoose.set('bufferCommands', false);
+
 
         mongoose.set('strictQuery', false);
         
