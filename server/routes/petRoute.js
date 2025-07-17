@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 // Route to handle pet uploads
 router.get('/searchPets', pet.searchPets);
-router.post('/uploadPet',authMiddleware, upload.array('images', 3), pet.uploadPet);
+router.post('/uploadPet',authMiddleware, upload.array('images'), pet.uploadPet);
 router.get('/getPetsByUser', authMiddleware, pet.getPetsByUser);
 router.get('/:id', pet.getPetById);
 router.put('/updatePet/:id', authMiddleware, upload.single('image'), pet.updatePet);
