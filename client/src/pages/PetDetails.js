@@ -6,8 +6,9 @@ import { Container, Row, Col, Badge, Card, Button, Form } from 'react-bootstrap'
 import '../style/PetDetails.css';
 import UserNavbar from './UserNavbar';
 import ViewReviews from './ViewReviews';
-import '../style/UserNavbar.css';
+import '../style/PetDetails.css';
 import Footer from './Footer';
+
 
 const PetDetails = () => {
   const { id } = useParams();
@@ -102,16 +103,15 @@ const PetDetails = () => {
           </Col>
 
           {/* Section: Main Image Box */}
-          <Col xs={10} md={4} className="imagebox">
+          <Col xs={10} md={5} className="imagebox">
             <img
               src={mainImage} // Display the main image from the state
-              className="w-100 h-100"
               alt={pet.breed}
             />
           </Col>
 
           {/* Middle Section: Product Details */}
-          <Col xs={8} md={4} className="detailsbox">
+          <Col xs={10} md={3} className="detailsbox">
             <div className="card-title">
               <Card.Title className="pet-title">
                 <Card.Text className="text-left cardtitle">
@@ -159,7 +159,7 @@ const PetDetails = () => {
           </Col>
 
           {/* Right Section: Delivery & Availability */}
-          <Col xs={4} md={2} className="availabilitybox">
+          <Col xs={12} md={2} className="availabilitybox">
             {/* Price and Shipping Details */}
             <div className="price-shipping">
               <h5>Rs.{pet.price}</h5>

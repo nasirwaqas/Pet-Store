@@ -65,7 +65,7 @@ const ViewReviews = () => {
                   <h4>{numericOverallRating.toFixed(1)} &nbsp; out of 5</h4>
                   <p>{totalRatings} Global Ratings</p>
                 </Col>
-                <Col md={8}>
+                <Col md={8} text-center>
                   <h5>Rating Breakdown</h5>
                   {Object.keys(ratingBreakdown).reverse().map((rating) => (
                     <div key={rating} className="my-2">

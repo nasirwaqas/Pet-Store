@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-.pet-details-page{
+.pet-details-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,9 +22,8 @@
   margin-top: 10rem;
   width: 5rem;
   height: fit-content;
-  margin-left: 2rem;
 }
-.first-sideimagebox{
+.first-sideimagebox {
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -34,7 +33,7 @@
   border-radius: 5px;
   object-fit: cover;
 }
-.second-sideimagebox{
+.second-sideimagebox {
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -44,7 +43,7 @@
   border-radius: 5px;
   object-fit: cover;
 }
-.third-sideimagebox{
+.third-sideimagebox {
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -55,37 +54,65 @@
   object-fit: cover;
 }
 
-.first-sideimagebox:hover ,.second-sideimagebox:hover ,.third-sideimagebox:hover{
+.first-sideimagebox:hover,
+.second-sideimagebox:hover,
+.third-sideimagebox:hover {
   border: 5px solid rgb(37, 232, 69);
 }
 
-.rating-section{
-  border-bottom: 1px  solid gainsboro;
-}
-
-.imagebox {
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  height: 32rem !important;
-  width: 30rem !important;
-  object-fit: cover;
-  margin-top: 3rem;
-
+.rating-section {
+  border-bottom: 1px solid gainsboro;
 }
 
 .imagebox img {
   object-fit: contain;
-  width: fit-content;
-  height: fit-content;
-  margin: auto;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  object-fit: cover;
   object-position: center;
 }
 
 .detailsbox {
-
-  margin-inline: 2rem;
+  margin-left: 2rem;
+  margin-right: 0;
   margin-top: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .detailsbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+
+    padding-top: 2rem;
+  }
+  .availabilitybox {
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .col-md-8 .col-2 {
+    margin: 0;
+    padding: 0;
+  }
+  .col-md-8 .col-8 {
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+  }
+  .top-review-section .col-md-8 {
+
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .availabilitybox {
@@ -111,7 +138,6 @@ button.w-100 {
   width: 100%;
 }
 
-
 .action-buttons button {
   width: 100%;
 }
@@ -121,12 +147,14 @@ button.w-100 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(183, 169, 197) ;
+  padding: 0;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
 }
-.about{
+.about {
   margin-top: 2rem;
   border-top: 1px solid rgb(200, 198, 198);
   padding-top: 3rem;
   padding-bottom: 3rem;
-
 }
