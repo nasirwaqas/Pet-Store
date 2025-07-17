@@ -5,6 +5,7 @@ import axios from 'axios';
 import DeletePet from '../components/deletePet'; // Default import
 import UploadPetForm from './PetForm'; // Import the UploadPetForm component
 import useLogout from '../hooks/HandleLogout'; // Import the useLogout hook
+import UserNavbar from './UserNavbar';
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -161,6 +162,8 @@ const Profile = () => {
   if (!userData) return <div><h1>Log Out Then Sign In Please</h1></div>;
 
   return (
+    <>
+    <UserNavbar/>
     <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
       <Card title="Profile" style={{ marginBottom: '20px', textAlign: 'center', backgroundColor: 'gainsboro' }}>
         <p style={{ textAlign: 'left' }}><strong>Name:</strong> {userData.name || 'N/A'}</p>
@@ -352,6 +355,7 @@ const Profile = () => {
       </Modal>
 
     </div>
+    </>
   );
 };
 
