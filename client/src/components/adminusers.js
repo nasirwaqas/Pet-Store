@@ -18,7 +18,7 @@ const AdminManagement = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userRes = await axios.get('`${API_URL}/admin/users');
+        const userRes = await axios.get(`${API_URL}/admin/users`);
         const usersData = Array.isArray(userRes.data) ? userRes.data : userRes.data.users || [];
         setUsers(usersData);
       } catch (error) {

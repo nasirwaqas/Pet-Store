@@ -6,6 +6,7 @@ import DeletePet from '../components/deletePet'; // Default import
 import UploadPetForm from './PetForm'; // Import the UploadPetForm component
 import useLogout from '../hooks/HandleLogout'; // Import the useLogout hook
 import UserNavbar from './UserNavbar';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -17,6 +18,7 @@ const Profile = () => {
   const [form] = Form.useForm();
   const [petForm] = Form.useForm();
   const logout = useLogout(); // Use the logout hook
+  const [loading, setLoading] = useState(true);
     const API_URL = process.env.REACT_APP_API_URL;
 
 
@@ -46,6 +48,8 @@ const Profile = () => {
       } else {
         message.error('Failed to fetch user data');
       }
+    } finally {
+      setLoading(false); // <-- Always stop loading
     }
   };
 
@@ -147,6 +151,7 @@ const Profile = () => {
         message.error('Something went wrong');
       }
     }
+    
   };
 
   const showPetModal = (pet) => {
@@ -159,7 +164,13 @@ const Profile = () => {
     setIsUploadModalVisible(true);
   };
 
-  if (!userData) return <div><h1>Log Out Then Sign In Please</h1></div>;
+  if (loading) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+      <Spinner animation="border" />
+    </div>
+  );
+}
 
   return (
     <>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Col, Row, Card, Alert, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner'; 
 import '../style/PetCard.css';
 
 const PetCard = () => {
@@ -85,7 +86,9 @@ const PetCard = () => {
           ))
         ) : (
           <Col>
-            <Alert variant="info">No pets have been uploaded yet.</Alert>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+                 <Spinner animation="border" />
+               </div>
           </Col>
         )}
       </Row>
