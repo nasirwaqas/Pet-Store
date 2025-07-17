@@ -38,7 +38,14 @@ const AdminLayout = ({ children }) => {
     getUserData();
   }, []);
 
-  const userName = localStorage.getItem('userName');
+  // Get user from localStorage and extract email or role
+  let userName = '';
+  try {
+    const user = JSON.parse(localStorage.getItem('user'));
+    userName = user?.email || user?.role || '';
+  } catch (e) {
+    userName = '';
+  }
 
   return (
     <>
