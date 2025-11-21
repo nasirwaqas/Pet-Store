@@ -8,8 +8,8 @@ import '../style/ReviewPage.css';
 import UserNavbar from './UserNavbar';
 
 const CreateReview = () => {
-  const { id } = useParams(); // Pet ID from URL params
-  const [pet, setPet] = useState(null); // Store pet details
+  const { id } = useParams(); // product ID from URL params
+  const [product, setProduct] = useState(null); // Store product details
   const [headline, setHeadline] = useState('');  // For review headline
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
@@ -20,18 +20,18 @@ const CreateReview = () => {
     const API_URL = process.env.REACT_APP_API_URL;
 
 
-  // Fetch the pet details when the component is mounted
+  // Fetch the product details when the component is mounted
   useEffect(() => {
-    const fetchPetDetails = async () => {
+    const fetchProductDetails = async () => {
       try {
-        const res = await axios.get(`${API_URL}/pet/${id}`);
-        setPet(res.data);
+        const res = await axios.get(`${API_URL}/product/${id}`);
+        setProduct(res.data);
       } catch (error) {
-        console.error('Error fetching pet details:', error);
+        console.error('Error fetching product details:', error);
       }
     };
 
-    fetchPetDetails();
+    fetchProductDetails();
   }, [id]);
 
   // Handler for review headline change
@@ -60,7 +60,7 @@ const CreateReview = () => {
   
     try {
       // POST review to backend
-      await axios.post(`${API_URL}/pet/${id}/review`, 
+      await axios.post(`${API_URL}/product/${id}/review`, 
         {
           review, // Review text
           rating, // Rating value
@@ -81,12 +81,12 @@ const CreateReview = () => {
     }
   };
 
-  if (!pet) {
+  if (!product) {
     return <div>Loading...</div>;
   }
 
   // Adjust image path if there are images
-  const imagePath = pet.images && pet.images.length > 0 ? '/images/' + pet.images[0].split("\\").pop() : '/images/default-image.png';
+  const imagePath = product.images && product.images.length > 0 ? API_URL + '/images/' + product.images[0].split("\\").pop() : '/images/default-image.png';
 
   return (
     <>
@@ -99,17 +99,17 @@ const CreateReview = () => {
               <Card.Img
                 variant="top"
                 src={imagePath}
-                alt={pet.Type}
+                alt={product.Type}
                 onError={(e) => e.target.src = '/images/default-image.png'} // Fallback image
               />
               <Card.Body>
-                <Card.Title>{pet.Type}</Card.Title>
-                <Card.Text>{pet.description}</Card.Text>
+                <Card.Title>{product.Type}</Card.Title>
+                <Card.Text>{product.description}</Card.Text>
                 <Card.Text>
-                  <strong>Price:</strong> Rs. {pet.price}
+                  <strong>Price:</strong> Rs. {product.price}
                 </Card.Text>
                 <Card.Text>
-                  <strong>Status:</strong> {pet.status}
+                  <strong>Status:</strong> {product.status}
                 </Card.Text>
               </Card.Body>
             </Card>

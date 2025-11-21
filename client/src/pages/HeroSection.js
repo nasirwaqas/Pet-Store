@@ -18,8 +18,8 @@ const HeroSection = () => {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>Welcome to PetStore</h3>
-          <p>Your one-stop shop for all your pet needs.</p>
+          <h3>Welcome to e-commerce Store</h3>
+          <p>Your one-stop shop for all your product needs.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -29,8 +29,8 @@ const HeroSection = () => {
           alt="Second slide"
         />
         <Carousel.Caption>
-          <h3>Find Your Perfect Pet</h3>
-          <p>Explore a wide variety of pets and accessories.</p>
+          <h3>Find Your Perfect product</h3>
+          <p>Explore a wide variety of products and accessories.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -41,7 +41,7 @@ const HeroSection = () => {
         />
         <Carousel.Caption>
           <h3>Quality and Care</h3>
-          <p>We ensure the best care and quality for your pets.</p>
+          <p>We ensure the best care and quality for your products.</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

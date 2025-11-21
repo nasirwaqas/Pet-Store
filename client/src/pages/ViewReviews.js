@@ -7,7 +7,7 @@ import { faStar, faStarHalfAlt, faStar as faStarOutline } from '@fortawesome/fre
 import '../style/ReviewPage.css';
 
 const ViewReviews = () => {
-  const { id } = useParams(); // Pet ID from URL params
+  const { id } = useParams(); // product ID from URL params
     const API_URL = process.env.REACT_APP_API_URL;
 
   const [ratingData, setRatingData] = useState({
@@ -20,7 +20,7 @@ const ViewReviews = () => {
   useEffect(() => {
     const fetchRating = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/pet/${id}/rating`);
+        const { data } = await axios.get(`${API_URL}/product/${id}/rating`);
         setRatingData(data);
       } catch (error) {
         console.error('Error fetching rating data:', error);
@@ -94,7 +94,7 @@ const ViewReviews = () => {
         <Col>
           <h3>Review this product</h3>
           <p>Share your thoughts with other customers</p>
-          <Link to={`/pet-details/${id}/review`}>
+          <Link to={`/product-details/${id}/review`}>
             <Button variant="primary">Write a customer review</Button>
           </Link>
         </Col>
@@ -107,7 +107,7 @@ const ViewReviews = () => {
           <h3>Top Reviews</h3>
           <ListGroup>
             {reviews.length === 0 ? (
-              <p>No reviews available for this pet yet.</p>
+              <p>No reviews available for this product yet.</p>
             ) : (
               reviews.map((review) => {
                 const reviewRating = Number(review.rating);

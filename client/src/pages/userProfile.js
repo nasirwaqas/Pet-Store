@@ -2,28 +2,28 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Modal, Form, Input, message, List } from 'antd';
 import axios from 'axios';
-import DeletePet from '../components/deletePet'; // Default import
-import UploadPetForm from './PetForm'; // Import the UploadPetForm component
+import DeleteProduct from '../components/deleteProduct'; // Default import
+import UploadProductForm from './ProductForm'; // Import the UploadProductForm component
 import useLogout from '../hooks/HandleLogout'; // Import the useLogout hook
 import UserNavbar from './UserNavbar';
 import Spinner from 'react-bootstrap/Spinner';
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
-  const [petData, setPetData] = useState([]);
+  const [productData, setProductData] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isPetModalVisible, setIsPetModalVisible] = useState(false);
+  const [isProductModalVisible, setIsProductModalVisible] = useState(false);
   const [isUploadModalVisible, setIsUploadModalVisible] = useState(false);
-  const [selectedPet, setSelectedPet] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [form] = Form.useForm();
-  const [petForm] = Form.useForm();
+  const [productForm] = Form.useForm();
   const logout = useLogout(); // Use the logout hook
   const [loading, setLoading] = useState(true);
     const API_URL = process.env.REACT_APP_API_URL;
 
 
-  const refreshPetList = () => {
-    getUserPets();
+  const refreshProductList = () => {
+    getUserProducts();
   };
 
   const getUserData = async () => {
@@ -53,32 +53,32 @@ const Profile = () => {
     }
   };
 
-  const getUserPets = async () => {
+  const getUserProducts = async () => {
     try {
-      const res = await axios.get(`${API_URL}/pet/getPetsByUser`, {
+      const res = await axios.get(`${API_URL}/product/getProductsByUser`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
 
       if (res.data.success) {
-        setPetData(res.data.pets);
+        setProductData(res.data.products);
       } else {
-        message.error('Failed to fetch pets data');
+        message.error('Failed to fetch products data');
       }
     } catch (error) {
-      console.error('Error fetching pets data:', error);
+      console.error('Error fetching products data:', error);
       if (error.response && error.response.status === 401) {
         logout(); // Logout if token is expired
       } else {
-        message.error('Failed to fetch pets data');
+        message.error('Failed to fetch products data');
       }
     }
   };
 
   useEffect(() => {
     getUserData();
-    getUserPets();
+    getUserProducts();
   }, []);
 
   const showModal = () => {
@@ -90,9 +90,9 @@ const Profile = () => {
     setIsModalVisible(false);
   };
 
-  const handlePetCancel = () => {
-    setIsPetModalVisible(false);
-    setSelectedPet(null);
+  const handleProductCancel = () => {
+    setIsProductModalVisible(false);
+    setSelectedProduct(null);
   };
 
   const handleUploadCancel = () => {
@@ -126,25 +126,25 @@ const Profile = () => {
     }
   };
 
-  const handlePetUpdate = async (values) => {
+  const handleProductUpdate = async (values) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put(`${API_URL}/pet/updatePet/${selectedPet._id}`, values, {
+      const res = await axios.put(`${API_URL}/product/updateProduct/${selectedProduct._id}`, values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       if (res.data.success) {
-        message.success('Pet updated successfully');
-        getUserPets();
-        setIsPetModalVisible(false);
-        setSelectedPet(null);
+        message.success('Product updated successfully');
+        getUserProducts();
+        setIsProductModalVisible(false);
+        setSelectedProduct(null);
       } else {
-        message.error('Failed to update pet');
+        message.error('Failed to update product');
       }
     } catch (error) {
-      console.error('Error updating pet:', error);
+      console.error('Error updating product:', error);
       if (error.response && error.response.status === 401) {
         logout(); // Logout if token is expired
       } else {
@@ -154,10 +154,10 @@ const Profile = () => {
     
   };
 
-  const showPetModal = (pet) => {
-    setSelectedPet(pet);
-    petForm.setFieldsValue(pet);
-    setIsPetModalVisible(true);
+  const showProductModal = (product) => {
+    setSelectedProduct(product);
+    productForm.setFieldsValue(product);
+    setIsProductModalVisible(true);
   };
 
   const showUploadModal = () => {
@@ -184,52 +184,52 @@ const Profile = () => {
           Update Profile
         </Button>
       </Card>
-      <Card title="Uploaded Pets" style={{ marginBottom: '30px', textAlign: 'center', backgroundColor: 'palegreen' }}>
-        {petData.length > 0 ? (
+      <Card title="Uploaded Products" style={{ marginBottom: '30px', textAlign: 'center', backgroundColor: 'palegreen' }}>
+        {productData.length > 0 ? (
           <List
             itemLayout="vertical"
-            dataSource={petData}
-            renderItem={pet => (
-              <List.Item key={pet._id}>
+            dataSource={productData}
+            renderItem={product => (
+              <List.Item key={product._id}>
                 <div>
-                  <strong>Pet Type:</strong> {pet.petType}
+                  <strong>Product Type:</strong> {product.productType}
                 </div>
                 <div>
-                  <strong>Breed:</strong> {pet.breed}
+                  <strong>Size:</strong> {product.size}
                 </div>
                 <div>
-                  <strong>Price:</strong> ${pet.price}
+                  <strong>Price:</strong> ${product.price}
                 </div>
                 <div>
-                  <strong>accountNumber:</strong> 92{pet.accountNumber}
+                  <strong>accountNumber:</strong> 92{product.accountNumber}
                 </div>
                 <div>
-                  <strong>Description:</strong> {pet.description}
+                  <strong>Description:</strong> {product.description}
                 </div>
-                {pet.images && pet.images.length > 0 && (
+                {product.images && product.images.length > 0 && (
                   <div>
-                    {pet.images.map((image, index) => (
+                    {product.images.map((image, index) => (
                       <img
                         key={index}
-                        src={'/images/' + image.split("\\").pop()}
-                        alt={pet.breed}
+                        src={API_URL + '/images/' + image.split("\\").pop()}
+                        alt={product.size}
                         style={{ width: '100px', marginRight: '10px' }}
                       />
                     ))}
                   </div>
                 )}
-                <Button type="primary" onClick={() => showPetModal(pet)}>
+                <Button type="primary" onClick={() => showProductModal(product)}>
                   Edit
                 </Button>
-                <DeletePet petId={pet._id} onDeleteSuccess={refreshPetList} />
+                <DeleteProduct productId={product._id} onDeleteSuccess={refreshProductList} />
               </List.Item>
             )}
           />
         ) : (
-          <p>No pets uploaded yet.</p>
+          <p>No products uploaded yet.</p>
         )}
         <Button type="primary" onClick={showUploadModal} block>
-          Upload New Pet
+          Upload New Product
         </Button>
       </Card>
 
@@ -273,27 +273,27 @@ const Profile = () => {
       </Modal>
       
       <Modal
-        title="Update Pet"
-        visible={isPetModalVisible}
-        onCancel={handlePetCancel}
+        title="Update Product"
+        visible={isProductModalVisible}
+        onCancel={handleProductCancel}
         footer={null}
       >
         <Form
-          form={petForm}
+          form={productForm}
           layout="vertical"
-          onFinish={handlePetUpdate}
+          onFinish={handleProductUpdate}
         >
           <Form.Item
-            label="Pet Type"
-            name="petType"
-            rules={[{ required: true, message: 'Please input pet type!' }]}
+            label="Product Type"
+            name="productType"
+            rules={[{ required: true, message: 'Please input product type!' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            label="Breed"
-            name="breed"
-            rules={[{ required: true, message: 'Please input breed!' }]}
+            label="Size"
+            name="size"
+            rules={[{ required: true, message: 'Please input size!' }]}
           >
             <Input />
           </Form.Item>
@@ -357,12 +357,12 @@ const Profile = () => {
       </Modal>
       
       <Modal
-        title="Upload New Pet"
+        title="Upload New Product"
         visible={isUploadModalVisible}
         onCancel={handleUploadCancel}
         footer={null}
       >
-        <UploadPetForm />
+        <UploadProductForm />
       </Modal>
 
     </div>

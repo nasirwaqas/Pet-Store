@@ -19,16 +19,16 @@ connectDB();
 const app = express();
 app.use(cors());
 
+
 // Middlewares
 app.use(morgan('dev'));
 app.use(express.json());
 
 // Serve static files
-app.use('/images', express.static(path.join(__dirname, 'public/images')));
-
+app.use('/images', express.static(path.join(__dirname, 'upload/images')));
 // Routes
 app.use("/user", require("./routes/userRoute"));
- app.use("/pet", require("./routes/petRoute"));
+ app.use("/product", require("./routes/productRoute"));
 app.use("/admin", require("./routes/adminRoute"));
 
 // Health check route

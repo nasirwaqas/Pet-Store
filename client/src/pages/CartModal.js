@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, ListGroup, Image, Form, Row, Col, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+
+
 const DeliveryForm = ({ handleDeliveryInfoSubmit }) => (
   <Form onSubmit={handleDeliveryInfoSubmit}>
     <h4>Delivery Information</h4>
@@ -61,6 +63,7 @@ const CartModal = ({ show, handleClose }) => {
   const [showPaymentOptions, setShowPaymentOptions] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (show) {
@@ -146,14 +149,14 @@ const CartModal = ({ show, handleClose }) => {
                     <Row className="align-items-center">
                       <Col md={2}>
                         <Image 
-                          src={item.images && item.images[0] ? `/images/${item.images[0].split('\\').pop()}` : '/images/default.jpg'} 
-                          alt={item.breed} 
+                          src={item.images && item.images[0] ? API_URL + `/images/${item.images[0].split('\\').pop()}` : '/images/default.jpg'} 
+                          alt={item.size} 
                           fluid 
                           rounded 
                         />
                       </Col>
                       <Col md={3}>
-                        <Link to={`/pet-details/${item._id}`} onClick={handleClose}>{item.description}</Link>
+                        <Link to={`/product-details/${item._id}`} onClick={handleClose}>{item.description}</Link>
                       </Col>
                       <Col md={2}>
                         Rs. {item.price}

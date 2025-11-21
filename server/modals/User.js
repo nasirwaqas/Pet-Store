@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["Admin", "User"],
+    enum: ["Admin", "User","Vendor"],
     required: true,
   },
   address: {
@@ -59,7 +59,7 @@ const UserSchema = new mongoose.Schema({
     enum: ['Pending', 'Accepted', 'Rejected'],
     default: 'Pending' 
   },
-  pets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pet' }] // Array to store pet IDs
+  products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] // Array to store product IDs
 });
 
 module.exports = mongoose.model("User", UserSchema);

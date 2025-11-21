@@ -7,7 +7,7 @@ import axios from 'axios';
 const { TextArea } = Input;
 const { Option } = Select;
 
-function UploadPetForm() {
+function UploadProductForm() {
   const [form] = Form.useForm();
   const [images, setImages] = useState([]);
 
@@ -20,7 +20,7 @@ function UploadPetForm() {
   const handleSubmit = async (values) => {
     const formData = new FormData();
     formData.append('category', values.category);
-    formData.append('breed', values.breed);
+    formData.append('size', values.size);
     formData.append('color', values.color); // Added color field
     formData.append('price', values.price);
     formData.append('description', values.description);
@@ -34,7 +34,7 @@ function UploadPetForm() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`${API_URL}/pet/uploadPet`, formData, {
+      const response = await axios.post(`${API_URL}/product/uploadProduct`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`, // Add token to the Authorization header
@@ -43,17 +43,17 @@ function UploadPetForm() {
 
       notification.success({
         message: 'Success',
-        description: 'Pet data uploaded successfully!',
+        description: 'Product data uploaded successfully!',
       });
 
       form.resetFields();
       setImages([]);
     } catch (error) {
-      console.error('Error uploading the pet', error);
+      console.error('Error uploading the Product', error);
 
       notification.error({
         message: 'Error',
-        description: 'There was an error uploading the pet.',
+        description: 'There was an error uploading the product.',
       });
     }
   };
@@ -61,7 +61,7 @@ function UploadPetForm() {
   return (
     <Row justify="center">
       <Col xs={24} sm={20} md={16} lg={12}>
-        <Card title="Upload Pet Details" bordered={false} style={{ marginTop: 20 }}>
+        <Card title="Upload Product Details" bordered={false} style={{ marginTop: 20 }}>
           <Form form={form} layout="vertical" onFinish={handleSubmit}>
             <Form.Item
               name="category"
@@ -73,9 +73,9 @@ function UploadPetForm() {
             </Form.Item>
 
             <Form.Item
-              name="breed"
-              label="Breed"
-              rules={[{ required: true, message: 'Please enter the breed' }]}
+              name="size"
+              label="Size"
+              rules={[{ required: true, message: 'Please enter the size' }]}
             >
               <Input />
             </Form.Item>
@@ -155,7 +155,7 @@ function UploadPetForm() {
 
             <Form.Item>
               <Button type="primary" htmlType="submit" block>
-                Upload Pet
+                Upload Product
               </Button>
             </Form.Item>
           </Form>
@@ -165,4 +165,4 @@ function UploadPetForm() {
   );
 }
 
-export default UploadPetForm;
+export default UploadProductForm;

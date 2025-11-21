@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pet = require('../controllers/pet.controller');
+const product = require('../controllers/product.controller');
 const user = require('../controllers/user.controller');
 const admin = require('../controllers/admin.controller');
 const authMiddleware = require('../middlewares/authMiddleware');
@@ -21,20 +21,20 @@ filename: function (req, file, cb) {
 });
 
 const upload = multer({ storage: storage });
-// Route to handle pet uploads]
+// Route to handle product uploads]
 // Get all users
 router.get('/users', admin.getAllUsers);
 
 // Update user status (accept/reject/block)
 router.put('/user-status', admin.updateUserStatus);
 
-// Get all pets
-router.get('/pets', admin.getAllPets);
+// Get all products
+router.get('/products', admin.getAllProducts);
 
-// Update pet status (block/unblock)
-router.put('/pet-status', admin.updatePetStatus);
-// update pet detils
-router.put('/pets/:id', admin.updatePet);
+// Update product status (block/unblock)
+router.put('/product-status', admin.updateProductStatus);
+// update product detils
+router.put('/products/:id', admin.updateProduct);
 // Route for updating a user
 router.put('/users/:id', admin.updateUser);
 // Route for deleting a user

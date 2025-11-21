@@ -50,7 +50,7 @@ const UserNavbar = () => {
   const parseSearchQuery = (query) => {
     const filters = {
       type: '',
-      breed: '',
+      size: '',
       color: '',
       maxPrice: null,
       minRating: null,
@@ -62,7 +62,7 @@ const UserNavbar = () => {
       if (['dog', 'cat', 'parrot', 'rabbit', 'hamster', 'fish', 'turtle', 'horse', 'peacock', 'pigeon', 'canary', 'cockatoo', 'macaw', 'finch'].includes(word)) {
         filters.type = word;
       } else if (['beagle', 'persian', 'sparrow'].includes(word)) {
-        filters.breed = word;
+        filters.size = word;
       } else if (['black', 'white', 'brown'].includes(word)) {
         filters.color = word;
       } else if (word.startsWith('$') || word.startsWith('under')) {
@@ -93,13 +93,13 @@ const UserNavbar = () => {
   
       // Include other filters from the parsed query
       if (filters.type) params.append('category', filters.type);
-      if (filters.breed) params.append('breed', filters.breed);
+      if (filters.size) params.append('size', filters.size);
       if (filters.color) params.append('color', filters.color);
       if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
       if (filters.minRating) params.append('minRating', filters.minRating);
   
       // Navigate to search results with filters applied
-      navigate(`/pet/searchPets?${params.toString()}`, { state: { filters } });
+      navigate(`/product/searchProducts?${params.toString()}`, { state: { filters } });
     }
   };
   
@@ -109,7 +109,7 @@ const UserNavbar = () => {
       <Navbar bg="dark" expand="lg" className="shadow-sm py-1" style={{ width: '100%', margin: '0 auto' }}>
         <Container fluid>
           <Navbar.Brand as={Link} to="/" id='logo' className="fw-bold">
-            Pet Store
+            Product Store
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="navbarResponsive" className="custom-toggle" />
@@ -150,7 +150,7 @@ const UserNavbar = () => {
                 </NavDropdown>
 
                 <FormControl
-                  placeholder="Search pet store"
+                  placeholder="Search e-commerce store"
                   aria-label="Search"
                   className="search-input"
                   value={searchQuery}

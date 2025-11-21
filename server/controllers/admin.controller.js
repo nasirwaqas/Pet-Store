@@ -1,5 +1,5 @@
 const User = require("../modals/User");
-const Pet = require("../modals/Pet");
+const Product = require("../modals/Product");
 
 // Get all users
 exports.getAllUsers = async (req, res) => {
@@ -36,38 +36,38 @@ exports.updateUserStatus = async (req, res) => {
   }
 };
 
-// Get all pets
-// exports.getAllPets = async (req, res) => {
+// Get all products
+// exports.getAllProducts = async (req, res) => {
 //   try {
-//     const pets = await Pet.find().populate('uploadedBy', 'name email');
-//     res.status(200).json({ success: true, pets });
+//     const products = await Product.find().populate('uploadedBy', 'name email');
+//     res.status(200).json({ success: true, products });
 //   } catch (error) {
-//     res.status(500).json({ success: false, message: 'Error fetching pets', error: error.message });
+//     res.status(500).json({ success: false, message: 'Error fetching products', error: error.message });
 //   }
 // };
-exports.getAllPets = async (req, res) => {
+exports.getAllProducts = async (req, res) => {
   try {
-    const pets = await Pet.find().populate('uploadedBy', 'name email').exec(); // Populate `uploadedBy` with user details
-    res.json({ pets });
+    const products = await Product.find().populate('uploadedBy', 'name email').exec(); // Populate `uploadedBy` with user details
+    res.json({ products });
   } catch (error) {
-    console.error('Error fetching pets:', error);
-    res.status(500).json({ message: 'Error fetching pets', error: error.message });
+    console.error('Error fetching products:', error);
+    res.status(500).json({ message: 'Error fetching products', error: error.message });
   }
 };
 
-// Update pet status (block/unblock)
-exports.updatePetStatus = async (req, res) => {
+// Update product status (block/unblock)
+exports.updateProductStatus = async (req, res) => {
   try {
-    const { petId, status } = req.body;
-    const updatedPet = await Pet.findByIdAndUpdate(petId, { status }, { new: true });
+    const { productId, status } = req.body;
+    const updatedProduct = await Product.findByIdAndUpdate(productId, { status }, { new: true });
 
-    if (!updatedPet) {
-      return res.status(404).json({ success: false, message: 'Pet not found' });
+    if (!updatedProduct) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
     }
 
-    res.status(200).json({ success: true, message: 'Pet status updated successfully', pet: updatedPet });
+    res.status(200).json({ success: true, message: 'Product status updated successfully', product: updatedProduct });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error updating pet status', error: error.message });
+    res.status(500).json({ success: false, message: 'Error updating product status', error: error.message });
   }
 };
 
@@ -112,27 +112,27 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 };
-   // update pet details
+   // update Product details
 
-exports.updatePet = async (req, res) => {
+exports.updateProduct = async (req, res) => {
   try {
-    const petId = req.params.id;
-    const { petType, price, breed, description, about, details, discount, color} = req.body;
+    const productId = req.params.id;
+    const { productType, price, size, description, about, details, discount, color} = req.body;
 
-    // Find the pet by ID and update its details
-    const updatedPet = await Pet.findByIdAndUpdate(
-      petId,
-      { petType, price, breed, description,  breed, about, details, discount, color,},
+    // Find the product by ID and update its details
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      { productType, price, size, description,  size, about, details, discount, color,},
       { new: true } // Return the updated document
     );
 
-    if (!updatedPet) {
-      return res.status(404).json({ success: false, message: 'Pet not found' });
+    if (!updatedProduct) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
     }
 
-    res.json({ success: true, pet: updatedPet });
+    res.json({ success: true, product: updatedProduct });
   } catch (error) {
-    console.error('Error updating pet:', error);
+    console.error('Error updating product:', error);
     res.status(500).json({ success: false, message: 'Server error' });
   }
 };

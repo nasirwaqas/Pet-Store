@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose; // Importing Schema from mongoose
 
-const PetSchema = new mongoose.Schema({
+const ProductSchema = new mongoose.Schema({
   category: { 
     type: String, 
     required: true 
   },
-  breed: { 
+  size: { 
     type: String, 
     required: true 
   },
@@ -62,4 +62,4 @@ const PetSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Pet", PetSchema);
+module.exports = mongoose.model("Product", ProductSchema);

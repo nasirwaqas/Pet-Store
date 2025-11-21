@@ -1,30 +1,30 @@
-// deletePet.js
+// deleteProduct.js
 import React from 'react';
 import { message, Button } from 'antd';
 import axios from 'axios';
 
 
 
-const DeletePet = ({ petId, onDeleteSuccess }) => {
+const DeleteProduct = ({ productId, onDeleteSuccess }) => {
   const API_URL = process.env.REACT_APP_API_URL;
 
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.delete(`${API_URL}/pet/deletePet/${petId}`, {
+      const res = await axios.delete(`${API_URL}/product/deleteProduct/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       if (res.data.success) {
-        message.success('Pet deleted successfully');
-        onDeleteSuccess(); // Callback to refresh the list of pets after deletion
+        message.success('Product deleted successfully');
+        onDeleteSuccess(); // Callback to refresh the list of Products after deletion
       } else {
-        message.error('Failed to delete pet');
+        message.error('Failed to delete Product');
       }
     } catch (error) {
-      console.error('Error deleting pet:', error);
+      console.error('Error deleting Product:', error);
       message.error('Something went wrong');
     }
   };
@@ -36,4 +36,4 @@ const DeletePet = ({ petId, onDeleteSuccess }) => {
   );
 };
 
-export default DeletePet;  // Ensure the component is exported as default
+export default DeleteProduct;  // Ensure the component is exported as default

@@ -1,34 +1,34 @@
-.pet-card {
+.product-card {
   border: 1px solid #f0f0f0;
   transition: transform 0.3s, box-shadow 0.3s;
   width: 100%;
   max-width: 99%;
 }
 
-.pet-card:hover {
+.product-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 .justify-content-around a{
   flex-grow: 1;
 }
-.pet-image {
+.product-image {
   height: 200px;
   object-fit: cover;
 }
 
-.pet-title {
+.product-title {
   font-size: 1.1rem;
   font-weight: bold;
   color: #333;
 }
 
-.pet-rating {
+.product-rating {
   font-size: 0.9rem;
   color: #ffa41c;
 }
 
-.pet-price {
+.product-price {
   font-size: 1.2rem;
   font-weight: thin;
   color: #fa7455;
@@ -51,7 +51,7 @@
   white-space: normal;
   max-height: none;
 }
-.pet-card {
+.product-card {
   border: 1px solid #f0f0f0;
   transition: transform 0.3s, box-shadow 0.3s;
   width: 100%;
@@ -60,18 +60,18 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.pet-card:hover {
+.product-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.pet-image {
+.product-image {
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
 }
 
-.pet-title {
+.product-title {
   font-size: 1rem;
   font-weight: bold;
   color: #333;
@@ -81,7 +81,7 @@
 }
 
 
-.pet-discount {
+.product-discount {
   font-size: 1rem;
   font-weight: bold;
   color: #28a745;
@@ -92,7 +92,7 @@
   color: #252424;
 }
 
-.pet-rating {
+.product-rating {
   font-size: 0.9rem;
   color: #ffa41c;
   margin-right: 2%;
@@ -115,7 +115,7 @@
 }
 
 
-.pet-card {
+.product-card {
   border: 1px solid #f0f0f0;
   transition: transform 0.3s, box-shadow 0.3s;
   width: 100%;
@@ -124,18 +124,18 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.pet-card:hover {
+.product-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.pet-image {
+.product-image {
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
 }
 
-.pet-title {
+.product-title {
   font-size: 1rem;
   font-weight: bold;
   color: #333;
@@ -145,14 +145,14 @@
 }
 
 
-.pet-discount {
+.product-discount {
   font-size: 1rem;
   font-weight: bold;
   color: #28a745;
 }
 
 
-.pet-rating {
+.product-rating {
   font-size: 0.9rem;
   color: #ffa41c;
   display: flex;

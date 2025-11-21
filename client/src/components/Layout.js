@@ -53,7 +53,7 @@ const AdminLayout = ({ children }) => {
         <div className='layout'>
           <div className='sidebar'>
             <div className='logo'>
-            <h5><Link to="/admin" className="logo-link">Pet Store</Link></h5>
+            <h5><Link to="/admin" className="logo-link">e-commerce Store</Link></h5>
               <hr />
             </div>
             <div className='menu'>
@@ -79,7 +79,7 @@ const AdminLayout = ({ children }) => {
           <div className='content'>
             <Navbar className="bg-body-tertiary">
               <Container>
-                <Navbar.Brand href="/admin">Online Pets Buy and Selling Store</Navbar.Brand>
+                <Navbar.Brand href="/admin">Online Products Buy and Selling Store</Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>

@@ -1,18 +1,18 @@
-// PetDetails.js
+// ProductDetails.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Badge, Card, Button, Form } from 'react-bootstrap';
-import '../style/PetDetails.css';
+import '../style/ProductDetails.css';
 import UserNavbar from './UserNavbar';
 import ViewReviews from './ViewReviews';
-import '../style/PetDetails.css';
+import '../style/ProductDetails.css';
 import Footer from './Footer';
 
 
-const PetDetails = () => {
+const ProductDetails = () => {
   const { id } = useParams();
-  const [pet, setPet] = useState(null);
+  const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState(''); // State to track the main image
   const [averageRating, setAverageRating] = useState(0);
   const navigate = useNavigate();
@@ -20,18 +20,18 @@ const PetDetails = () => {
 
 
   useEffect(() => {
-    const fetchPetDetails = async () => {
+    const fetchProductDetails = async () => {
       try {
-        const res = await axios.get(`${API_URL}/pet/${id}`);
-        setPet(res.data);
-        setMainImage(`/images/${res.data.images[0].split('\\').pop()}`); // Set the default main image to the first image
+        const res = await axios.get(`${API_URL}/product/${id}`);
+        setProduct(res.data);
+        setMainImage(`${API_URL}/images/${res.data.images[0].split('\\').pop()}`); // Set the default main image to the first image
         calculateAverageRating(res.data.reviews);
       } catch (error) {
-        console.error('Error fetching pet details:', error);
+        console.error('Error fetching product details:', error);
       }
     };
 
-    fetchPetDetails();
+    fetchProductDetails();
   }, [id]);
 
   const calculateAverageRating = (reviews) => {
@@ -54,11 +54,11 @@ const PetDetails = () => {
     }
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    const petInCart = cart.find((item) => item._id === pet._id);
-    if (petInCart) {
-      petInCart.quantity += 1;
+    const productInCart = cart.find((item) => item._id === product._id);
+    if (productInCart) {
+      productInCart.quantity += 1;
     } else {
-      cart.push({ ...pet, quantity: 1 });
+      cart.push({ ...product, quantity: 1 });
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -66,36 +66,36 @@ const PetDetails = () => {
     // Dispatch a custom event to notify other components
     window.dispatchEvent(new Event('cartUpdated'));
 
-    alert('Pet added to cart!');
+    alert('product added to cart!');
   };
 
   // Handler for hovering over the side images
   const handleMouseOver = (index) => {
-    setMainImage(`/images/${pet.images[index].split('\\').pop()}`); // Set the main image to the hovered image
+    setMainImage(`${API_URL}/images/${product.images[index].split('\\').pop()}`); // Set the main image to the hovered image
   };
 
-  if (!pet) {
+  if (!product) {
     return <div>Loading...</div>;
   }
 
   return (
     <>
       <UserNavbar />
-      <Container fluid className="pet-details-page">
+      <Container fluid className="product-details-page">
         <Row>
           {/* Left Section: Additional Side Images */}
           <Col xs={1} md={1} className="product-side-images">
             <div className="d-flex flex-column align-items-center">
-              {pet.images && pet.images.map((image, index) => (
+              {product.images && product.images.map((image, index) => (
                 <span
                   key={index}
                   className="side-imagebox"
                   onMouseOver={() => handleMouseOver(index)} // Hover event for each image
                 >
                   <img
-                    src={`/images/${image.split('\\').pop()}`}
+                    src={`${API_URL}/images/${image.split('\\').pop()}`}
                     className="w-100 h-100"
-                    alt={pet.breed}
+                    alt={product.size}
                   />
                 </span>
               ))}
@@ -106,16 +106,16 @@ const PetDetails = () => {
           <Col xs={10} md={5} className="imagebox">
             <img
               src={mainImage} // Display the main image from the state
-              alt={pet.breed}
+              alt={product.size}
             />
           </Col>
 
           {/* Middle Section: Product Details */}
           <Col xs={10} md={3} className="detailsbox">
             <div className="card-title">
-              <Card.Title className="pet-title">
+              <Card.Title className="product-title">
                 <Card.Text className="text-left cardtitle">
-                  {pet.description}
+                  {product.description}
                 </Card.Text>
               </Card.Title>
               <Col md={9} className="flex-item-right">
@@ -128,31 +128,31 @@ const PetDetails = () => {
                       {averageRating % 1 >= 0.5 ? '☆' : ''}
                       {'☆'.repeat(5 - Math.ceil(averageRating))}
                     </div>
-                    <p>({pet.reviews.length} reviews)</p>
+                    <p>({product.reviews.length} reviews)</p>
                   </div>
                 </div>
                 {/* Price Section */}
                 <div className="price-section">
-                  {pet.discount > 0 && (
+                  {product.discount > 0 && (
                     <>
-                      <p className="text-muted text-decoration-line-through">Rs. {pet.originalPrice}</p>
+                      <p className="text-muted text-decoration-line-through">Rs. {product.originalPrice}</p>
                       <p className="text-danger">
-                        Rs. {pet.price} <span className="badge bg-success">{pet.discount}% Off</span>
+                        Rs. {product.price} <span className="badge bg-success">{product.discount}% Off</span>
                       </p>
                     </>
                   )}
-                  {!pet.discount && <p className="text-success">Rs. {pet.price}</p>}
+                  {!product.discount && <p className="text-success">Rs. {product.price}</p>}
                 </div>
 
                 <p>
                   <strong>Status:</strong>{' '}
-                  <Badge bg={pet.status === 'Available' ? 'success' : 'danger'}>
-                    {pet.status}
+                  <Badge bg={product.status === 'Available' ? 'success' : 'danger'}>
+                    {product.status}
                   </Badge>
                 </p>
                 <p className='about'>
                   <strong>About this Product</strong>&nbsp;
-                  {pet.about}
+                  {product.about}
                 </p>
               </Col>
             </div>
@@ -162,7 +162,7 @@ const PetDetails = () => {
           <Col xs={12} md={2} className="availabilitybox">
             {/* Price and Shipping Details */}
             <div className="price-shipping">
-              <h5>Rs.{pet.price}</h5>
+              <h5>Rs.{product.price}</h5>
               <p>Delivery October 2 - 22</p>
               <p><strong>Deliver to:</strong> Pakistan</p>
             </div>
@@ -193,4 +193,4 @@ const PetDetails = () => {
   );
 };
 
-export default PetDetails;
+export default ProductDetails;

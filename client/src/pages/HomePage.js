@@ -1,7 +1,7 @@
 import React from 'react'
 import UserNavbar from './UserNavbar'
 import HeroSection from './HeroSection'
-import PetCard from './PetCard'
+import ProductCard from './ProductCard'
 import Footer from './Footer'
 
 export default function HomePage() {
@@ -9,7 +9,7 @@ export default function HomePage() {
     <>
     <UserNavbar/>
     <HeroSection/>
-    <PetCard/>
+    <ProductCard/>
     <Footer/>
     </>
   )

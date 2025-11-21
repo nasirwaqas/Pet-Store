@@ -13,8 +13,8 @@ const Footer = () => {
         <Row>
           {/* Company Info */}
           <Col md={4} className="mb-3">
-            <h5>Pet Store</h5>
-            <p>Your one-stop shop for all your pet needs. Buy, sell, and adopt pets with ease.</p>
+            <h5>E-commerce Store</h5>
+            <p>Your one-stop shop for all your product needs. Buy, sell, and adopt products with ease.</p>
           </Col>
 
           {/* Quick Links */}
@@ -68,7 +68,7 @@ const Footer = () => {
 
         <Row className="text-center mt-4">
           <Col>
-            <p>&copy; {new Date().getFullYear()} Pet Store. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} E-commerce Store. All rights reserved.</p>
           </Col>
         </Row>
       </Container>

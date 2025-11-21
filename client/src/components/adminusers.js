@@ -5,16 +5,16 @@ import AdminLayout from './Layout';
 
 const AdminManagement = ({ children }) => {
   const [users, setUsers] = useState([]);
-  const [pets, setPets] = useState([]);
+  const [products, setProducts] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [showUpdatePetModal, setShowUpdatePetModal] = useState(false);
-  const [selectedPet, setSelectedPet] = useState(null);
-  const [showViewPetModal, setShowViewPetModal] = useState(false); // New state for view modal
+  const [showUpdateProductModal, setShowUpdateProductModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showViewProductModal, setShowViewProductModal] = useState(false); // New state for view modal
 
     const API_URL = process.env.REACT_APP_API_URL;
 
-  // Fetch users and pets data
+  // Fetch users and Products data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -150,32 +150,32 @@ const AdminManagement = ({ children }) => {
         )}
 
 
-        {/* View Pet Modal */}
-        {selectedPet && (
-          <Modal show={showViewPetModal} onHide={() => setShowViewPetModal(false)}>
+        {/* View Product Modal */}
+        {selectedProduct && (
+          <Modal show={showViewProductModal} onHide={() => setShowViewProductModal(false)}>
             <Modal.Header closeButton>
-              <Modal.Title>View Pet Details</Modal.Title>
+              <Modal.Title>View Product Details</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p><strong>Pet Type:</strong> {selectedPet.petType}</p>
-              <p><strong>Price:</strong> {selectedPet.price}</p>
-              <p><strong>Status:</strong> {selectedPet.status}</p>
-              <p><strong>Description:</strong> {selectedPet.description}</p>
-              <p><strong>Breed:</strong> {selectedPet.breed}</p>
-              <p><strong>Account Number:</strong> {selectedPet.accountNumber}</p>
-              {selectedPet.images.map((image, index) => (
+              <p><strong>Product Type:</strong> {selectedProduct.productType}</p>
+              <p><strong>Price:</strong> {selectedProduct.price}</p>
+              <p><strong>Status:</strong> {selectedProduct.status}</p>
+              <p><strong>Description:</strong> {selectedProduct.description}</p>
+              <p><strong>Size:</strong> {selectedProduct.size}</p>
+              <p><strong>Account Number:</strong> {selectedProduct.accountNumber}</p>
+              {selectedProduct.images.map((image, index) => (
                       <img
                         key={index}
-                        src={'/images/' + image.split("\\").pop()}
-                        alt={selectedPet.breed}
+                        src={API_URL + '/images/' + image.split("\\").pop()}
+                        alt={selectedProduct.size}
                         style={{ width: '100px', marginRight: '10px' }}
                       />
                     ))}
-              <p><strong>Owner Name:</strong> {selectedPet.uploadedBy ? selectedPet.uploadedBy.name : 'Unknown'}</p>
+              <p><strong>Owner Name:</strong> {selectedProduct.uploadedBy ? selectedProduct.uploadedBy.name : 'Unknown'}</p>
               {/* Add more details as needed */}
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={() => setShowViewPetModal(false)}>Close</Button>
+              <Button variant="secondary" onClick={() => setShowViewProductModal(false)}>Close</Button>
             </Modal.Footer>
           </Modal>
         )}

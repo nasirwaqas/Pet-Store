@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-.pet-details-page {
+.product-details-page {
   display: flex;
   flex-direction: column;
   align-items: center;
